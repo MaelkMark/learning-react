@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'
 import Confetti from "react-confetti"
 
 import Die from './Die'
+import SourceButton from './components/SourceButton'
 
 export default function App() {
   const [dice, setDice] = useState(() => allNewDice()) // Storing dice in state
@@ -40,7 +41,9 @@ export default function App() {
 
   // Holding dice
   function hold(id) {
-    setDice(prev => prev.map(die => die.id === id ? {...die, held: !die.held} : die))
+    if (!gameWon) {
+      setDice(prev => prev.map(die => die.id === id ? {...die, held: !die.held} : die))
+    }
   }
 
   // Rolling all dice or (if the player won) resetting the game
@@ -58,18 +61,21 @@ export default function App() {
   const diceComponents = dice.map(die => <Die value={die.value} held={die.held} key={die.id} hold={() => hold(die.id)} />)
 
   return (
-    <main>
-      { gameWon && <Confetti /> }
-      <h1 className="title">Tenzies</h1>
-      <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-      <div className="stats">
-        <div className="timer">{timer}</div>
-        <div className="rolls">Rolls: {rolls}</div>
-      </div>
-      <div className="dice-container">
-        { diceComponents }
-      </div>
-      <button className="roll-button" onClick={roll}>{ gameWon ? "New game" : "Roll"}</button>
-    </main>
+    <>
+      <main>
+        { gameWon && <Confetti /> }
+        <h1 className="title">Tenzies</h1>
+        <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+        <div className="stats">
+          <div className="timer">{timer}</div>
+          <div className="rolls">Rolls: {rolls}</div>
+        </div>
+        <div className="dice-container">
+          { diceComponents }
+        </div>
+        <button className="roll-button" onClick={roll}>{ gameWon ? "New game" : "Roll"}</button>
+      </main>
+      <SourceButton />
+    </>
   )
 }

@@ -4,13 +4,14 @@ import Confetti from "react-confetti"
 
 import Die from './Die'
 
-function App() {
-  const [dice, setDice] = useState(() => allNewDice())
-  const [rolls, setRolls] = useState(0)
-  const [timer, setTimer] = useState("00:00")
+export default function App() {
+  const [dice, setDice] = useState(() => allNewDice()) // Storing dice in state
+  const [rolls, setRolls] = useState(0) // Total rolls from start of game
+  const [timer, setTimer] = useState("00:00") // Timer from start of game
 
-  const gameWon = dice.every(die => die.held && die.value === dice[0].value)
+  const gameWon = dice.every(die => die.held && die.value === dice[0].value) // Did the player win the game
 
+  // Timer logic
   useEffect(() => {
     let timerInterval
     
@@ -32,15 +33,17 @@ function App() {
     }
   }, [gameWon])
 
-
+  // Generating new dice
   function allNewDice() {
     return Array(10).fill().map(() => ({value: Math.ceil(Math.random() * 6), held: false, id: nanoid()}))
   }
 
+  // Holding dice
   function hold(id) {
     setDice(prev => prev.map(die => die.id === id ? {...die, held: !die.held} : die))
   }
 
+  // Rolling all dice or (if the player won) resetting the game
   function roll() {
     if (!gameWon) {
       setDice(prev => prev.map(die => !die.held ? {...die, value: Math.ceil(Math.random() * 6)} : die))
@@ -70,5 +73,3 @@ function App() {
     </main>
   )
 }
-
-export default App

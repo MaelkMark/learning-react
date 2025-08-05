@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { nanoid } from 'nanoid'
 import Confetti from "react-confetti"
 
@@ -9,14 +9,32 @@ export default function App() {
   const [dice, setDice] = useState(() => allNewDice()) // Storing dice in state
   const [rolls, setRolls] = useState(0) // Total rolls from start of game
   const [timer, setTimer] = useState("00:00") // Timer from start of game
+  const [gameStarted, setGameStarted] = useState(false)
 
   const gameWon = dice.every(die => die.held && die.value === dice[0].value) // Did the player win the game
+
+  const rollButton = useRef(null)
+
+  useEffect(() => {
+    let timeout;
+
+    if (gameWon) {
+      rollButton.current.disabled = true;
+      timeout = setTimeout(() => {
+        rollButton.current.disabled = false;
+      }, 1500)
+    }
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [gameWon])
 
   // Timer logic
   useEffect(() => {
     let timerInterval
     
-    if (!gameWon) {
+    if (gameStarted) {
       let timerStart = new Date()
 
       timerInterval = setInterval(() => {
@@ -32,7 +50,7 @@ export default function App() {
       console.log("Clearing interval", timerInterval)
       clearInterval(timerInterval)
     }
-  }, [gameWon])
+  }, [gameStarted])
 
   // Generating new dice
   function allNewDice() {
@@ -50,7 +68,12 @@ export default function App() {
   function roll() {
     if (!gameWon) {
       setDice(prev => prev.map(die => !die.held ? {...die, value: Math.ceil(Math.random() * 6)} : die))
-      setRolls(prev => prev + 1)
+
+      if (gameStarted) {
+        setRolls(prev => prev + 1)
+      } else {
+        setGameStarted(true)
+      }
     } else {
       setDice(allNewDice())
       setRolls(0)
@@ -58,7 +81,7 @@ export default function App() {
     }
   }
 
-  const diceComponents = dice.map(die => <Die value={die.value} held={die.held} key={die.id} hold={() => hold(die.id)} />)
+  const diceComponents = dice.map(die => <Die value={die.value} held={die.held} key={die.id} hold={() => hold(die.id)} disabled={gameWon || !gameStarted} />)
 
   return (
     <>
@@ -73,7 +96,7 @@ export default function App() {
         <div className="dice-container">
           { diceComponents }
         </div>
-        <button className="roll-button" onClick={roll}>{ gameWon ? "New game" : "Roll"}</button>
+        <button className="roll-button" ref={rollButton} onClick={roll}>{ gameWon ? "New game" : gameStarted ? "Roll" : "Start Game"}</button>
       </main>
       <SourceButton />
     </>

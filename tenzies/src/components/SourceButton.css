@@ -22,3 +22,7 @@
     width: 100% !important;
     height: 100% !important;
 }
+
+.source-button path {
+    transition: 0.2s;
+}

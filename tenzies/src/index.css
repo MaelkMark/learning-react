@@ -11,16 +11,21 @@
 }
 
 button {
-    cursor: pointer;
     transition: 0.2s;
+    color: black;
+    user-select: none;
 }
 
-button:hover {
-    filter: brightness(0.96);
-}
+button:not(:disabled) {
+    cursor: pointer;
 
-button:active {
-    filter: brightness(0.9);
+    &:hover {
+        filter: brightness(0.96);
+    }
+    
+    &:active {
+        filter: brightness(0.9);
+    }
 }
 
 
@@ -33,6 +38,7 @@ body {
     height: 100dvh;
     margin: 0;
     padding: min(20px, 2vw);
+    transition: 0.2s;
 }
 
 #root {
@@ -55,6 +61,7 @@ main {
     align-items: center;
     flex-direction: column;
     gap: 0.5rem;
+    transition: 0.2s;
 }
 
 .title {
@@ -91,10 +98,11 @@ main {
 }
 
 .die {
-    font-size: 1.7rem;
+    font-size: min(1.7rem, 8vw);
     font-weight: bold;
     padding: 0.3em 0.5em;
-    width: 3ch;
+    width: min(3ch, 15vw);
+    /* width: 3ch; */
     border: none;
     border-radius: 5px;
     box-shadow: 0 5px 5px rgb(0 0 0 / .15);
@@ -114,8 +122,18 @@ main {
     border-radius: 5px;
 }
 
-.roll-button:active {
-    scale: 0.9;
+.roll-button:disabled {
+    opacity: 0.7;
+}
+
+.roll-button:not(:disabled) {
+    &:hover {
+        scale: 1.05;
+    }
+    
+    &:active {
+        scale: 0.9;
+    }
 }
 
 

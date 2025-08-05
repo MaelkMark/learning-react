@@ -9,7 +9,7 @@ export default function Die(props) {
   )
 
   return (
-    <button onClick={props.hold} className={classes}>
+    <button onClick={props.hold} className={classes} disabled={props.disabled}>
       {props.value}
     </button>
   )

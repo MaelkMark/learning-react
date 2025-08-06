@@ -8,3 +8,11 @@ A simple and fun dice game built with React. The goal is to roll until all ten d
 [**Live Demo**](https://maelkmark.github.io/learning-react/tenzies/)
 |
 [**Source Code**](https://github.com/MaelkMark/learning-react/tree/main/tenzies)
+
+## Assembly: Endgame
+
+A hangman-style game where a programming language is deleted with every wrong guess, until only Assembly remains.
+
+[**Live Demo**](https://maelkmark.github.io/learning-react/assembly-endgame/)
+|
+[**Source Code**](https://github.com/MaelkMark/learning-react/tree/main/assembly-endgame/)

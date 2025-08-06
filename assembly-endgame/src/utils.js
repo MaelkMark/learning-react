@@ -2,7 +2,6 @@ import { words } from "./data"
 
 export function getRandomWord() {
     const randomIndex = Math.floor(Math.random() * words.length)
-    console.log("Word:", words[randomIndex])
     return words[randomIndex]
 }
 

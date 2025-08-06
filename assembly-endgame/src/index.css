@@ -17,7 +17,7 @@ main {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  padding: 1rem;
+  padding: min(1rem, 2vw);
   gap: min(2rem, 3vh);
   /* min-height: 100dvh;
   min-height: 100vh; */
@@ -54,6 +54,10 @@ p {
   margin: 0;
 }
 
+h1 {
+  font-size: min(1.5rem, 8vw)
+}
+
 
 .status {
   border-radius: 4px;
@@ -77,6 +81,14 @@ p {
 
 .status.farewell {
   background-color: #7A5EA7;
+}
+
+.status.farewell > p {
+  font-style: italic;
+}
+
+.status.farewell > p::before, .status.farewell > p::after {
+  content: '"';
 }
 
 .status > :is(h2, p) {
@@ -125,6 +137,9 @@ p {
 .letter {
   width: 40px;
   height: 40px;
+  max-width: 11vmin;
+  max-height: 11vmin;
+  font-size: min(1.1rem, 5vmin);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,23 +158,25 @@ p {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: min(0.4rem, 1.7vmin);
   max-width: 50ch;
 }
 
 .key {
   width: 40px;
   height: 40px;
+  max-width: 11vmin;
+  max-height: 11vmin;
+  font-size: min(1.1rem, 5vmin);
+  font-weight: 600;
+  color: #1E1E1E;
+  text-transform: uppercase;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #D7D7D7;
   border-radius: 4px;
   background-color: #FCBA29;
-  color: #1E1E1E;
-  font-weight: 600;
-  font-size: 1.1rem;
-  text-transform: uppercase;
 }
 
 .key.correct {

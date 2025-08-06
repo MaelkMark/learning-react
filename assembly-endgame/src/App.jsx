@@ -32,7 +32,6 @@ function App() {
 
   function guessLetter(letter) {
     if (!guessedLetters.includes(letter) && !isGameOver) {
-      console.log(guessedLetters, letter)
       setGuessedLetters((prev) => [...prev, letter]);
     }
   }

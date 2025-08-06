@@ -10,30 +10,10 @@ I made this game following the [React course](https://scrimba.com/learn-react-c0
 
 You can compare my solution with the [final result in the course](https://scrimba.com/learn-react-c0e/~04ao).
 
-
-## Getting Started
-
-To get a local copy up and running, follow these simple steps.
-
-### Installation
-
-1.  Clone the repository which contains this project.
-    ```sh
-    git clone https://github.com/MaelkMark/learning-react.git
-    ```
-2.  Navigate into the project directory.
-    ```sh
-    cd learning-react/tenzies
-    ```
-3.  Install NPM packages.
-    ```sh
-    npm install
-    ```
-4.  Run the development server.
-    ```sh
-    npm start
-    ```
-
 ## See Also
 
 You can find my other React projects in my [learning-react](https://github.com/MaelkMark/learning-react/tree/main) repo.
+
+## Screenshot
+
+[![Screenshot of the app](public/screenshot.png)](https://maelkmark.github.io/learning-react/tenzies/)

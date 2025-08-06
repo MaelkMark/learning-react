@@ -12,3 +12,6 @@ You can compare my solution with the [final result in the course](https://scrimb
 ## See Also
 
 You can find my other React projects in my [learning-react](https://github.com/MaelkMark/learning-react/tree/main) repo.
+
+## Screenshot
+[![Screenshot of the app](public/screenshot.png)](https://maelkmark.github.io/learning-react/assembly-endgame/)
